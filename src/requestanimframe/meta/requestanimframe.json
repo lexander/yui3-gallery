@@ -1,0 +1,7 @@
+{
+    "requestanimframe": {
+        "requires": [
+            "yui-base"
+        ]
+    }
+}

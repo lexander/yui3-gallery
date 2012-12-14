@@ -1,0 +1,11 @@
+{
+    "name"       : "requestanimframe",
+    "displayName": "Gallery: requestanimframe",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "ashusta" ],
+    "use"        : [ "requestanimframe" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
