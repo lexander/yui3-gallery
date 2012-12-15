@@ -38,8 +38,8 @@ cancelRequestAnimationFrameFunction = (function() {
 
     
     return function(id) {
-            clearTimeout(id);
-        };
+        clearTimeout(id);
+    };
 }());
 
 /**
@@ -68,3 +68,13 @@ Y.requestAnimFrameWithScope = function(fn, context) {
     fn = Y.bind(fn, context);
     return Y.requestAnimFrame.call(window, fn);
 };
+
+/**
+ * CancelRequestAnimationFrame polyfill hooked into the top-level YUI object.
+ * Adapted from
+ * http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+ * @method cancelRequestAnimFrame
+ * @param id {string} animation id to cancel, if using the fallback setTimeout based
+ * animation.
+ */
+Y.cancelRequestAnimFrame = Y.bind(cancelRequestAnimationFrameFunction, window);

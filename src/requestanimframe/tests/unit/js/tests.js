@@ -4,12 +4,19 @@ YUI.add('module-tests', function(Y) {
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
-        'test is empty': function() {
-            Y.Assert.fail('No Tests Provided For This Module');
+        'Y.requestAnimFrame method should be registered': function() {
+            Y.Assert.isFunction(Y.requestAnimFrame);
+        },
+
+        'Y.requestAnimFrameWithContext method should be registered': function() {
+            Y.Assert.isFunction(Y.requestAnimFrame);
+        },
+
+        'Y.cancelRequestAnimFrame method should be registered': function(){
+            Y.Assert.isFunction(Y.cancelRequestAnimFrame);
         }
     }));
 
     Y.Test.Runner.add(suite);
-
-
-},'', { requires: [ 'test' ] });
+    
+},'', { requires: [ 'test', 'requestanimframe' ] });

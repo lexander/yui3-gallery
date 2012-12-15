@@ -1,14 +1,63 @@
 <div class="intro">
     <p>
-    *Summary Goes Here*
+    Polyfill that binds native, vendor-prefixed, or `setTimeout` based version of `requestAnimationFrame` and
+    `cancelRequestAnimationFrame` to the top-level YUI object.
     </p>
 </div>
 
 <h2>Description</h2>
 
-<p>*Module Description Goes Here*</p>
+<p>
+Additional information about the `window.requestAnimationFrame` API is available from Mozilla at 
+<a href="https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame">window.requestAnimationFrame</a>.
+</p>
 
 ```
-//Module example code
+var d = document.getElementById("demo");
+
+// To run a 2 second animation, note the start time
+var start = Date.now();
+
+// Define the method that will perform the animation,
+// the 'timestamp' parameter will be passed automatically
+// by the browser.
+function step(timestamp) {
+  var progress = timestamp - start;
+  d.style.left = Math.min(progress/10, 200) + "px";
+  // This is key, you must check the break condition
+  // inside the function
+  if (progress < 2000) {
+  	// AND, you must make another call to requestAnimFrame
+  	// otherwise animation will end
+    Y.requestAnimFrame(step);
+  }
+}
+
+// Start the animation
+Y.requestAnimFrame(step);
+
+// To run an animation that has access to values in a specified scope.
+// Define what you want in your scope, this would normally be a full
+// class but for a short demo, an object literal will do.
+var scopeVar = {
+    start: Date.now(),
+    distance: 200,
+    duration: 2000,
+    node: document.getElementById("demo2")
+}
+
+// Define the method to perform the animation, this time
+// we do not need to create a global 'start' time. We can load
+// the start time from the containing scope.
+function stepThis(timestamp){
+    var progress = timestamp - this.start;
+    this.node.style.left = Math.min(progress/10, this.distance) + "px";
+    if (progress < this.duration) {
+        Y.requestAnimFrameWithScope(stepThis, scopeVar);
+    }
+}
+
+var dd = document.getElementById("demo2");
+Y.requestAnimFrameWithScope(stepThis, scopeVar);
 ```
 
