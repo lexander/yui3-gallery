@@ -12,8 +12,8 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isFunction(Y.requestAnimFrame);
         },
 
-        'Y.cancelRequestAnimFrame method should be registered': function(){
-            Y.Assert.isFunction(Y.cancelRequestAnimFrame);
+        'Y.cancelAnimFrame method should be registered': function(){
+            Y.Assert.isFunction(Y.cancelAnimFrame);
         }
     }));
 
