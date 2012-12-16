@@ -8,6 +8,13 @@
 <h2>Description</h2>
 
 <p>
+RequestAnimationFrame is an HTML5 API that is intended to be used for animations where control of frame timing is handed
+over to the browser. A single timestamp value, that identifies when the frame will run, is passed into the function. The
+method usually executes in the global scope, and is asynchronous in nature. Developers should be very careful 
+with any side-effects or outside dependencies in their code as it is easy to introduce race conditions.
+</p>
+
+<p>
 Additional information about the `window.requestAnimationFrame` API is available from Mozilla at 
 <a href="https://developer.mozilla.org/en-US/docs/DOM/window.requestAnimationFrame">window.requestAnimationFrame</a>.
 </p>
@@ -57,7 +64,6 @@ function stepThis(timestamp){
     }
 }
 
-var dd = document.getElementById("demo2");
 Y.requestAnimFrameWithScope(stepThis, scopeVar);
 ```
 
